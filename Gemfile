@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.1'
+ruby '2.6.1' #this should correspond to the ruby version you are running
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# to scope a gem to a specific major version you can use the ~> symbol before the gem version
+# this will make sure a gem is stuck at a major version
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
@@ -26,10 +28,14 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# gems listed above here are considered production gems. These should gems that are core to your application
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
+
+# gems listed underneath group :development are gems that are only installed in development environment
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -38,7 +44,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # to add gems to rails project just list them out in the gemfile here.
   gem 'cowsay'
+  gem 'pry'
+  gem 'pry-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
