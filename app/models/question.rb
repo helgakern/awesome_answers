@@ -8,6 +8,48 @@ class Question < ApplicationRecord
     # Rails will add att_accessors for all columns
     # of the table (i.e title, body, created_at, updated_at, ...)
 
+    # V A L I D A T I O N S
+    # Create validations by using the 'validates' method
+    # Th arguments are (in order):
+    # - A column name as a symbol 
+    # - Named arguments, corresponding to the validation rules
+
+    # To read more on validations, go to:
+    # https://guides.rubyonrails.org/active_record_validations.html
+
+    validates(:title, presence: true, uniqueness: true)
+    validates(
+        :body,
+        presence: { message: "must exist" },
+        length: { minimum: 10 }
+    )
+    validates(
+        :view_count,
+        numericality: { greater_than_or_equal_to: 0, allow_blank: true }
+    )
+
+    # Custom validation
+    # The method for custom validations is singular
+    # unlike the 'validates' method for regular validations
+    validate :no_monkey
+
+
+    private 
+    
+    def no_monkey
+        # &. is the safe navigation operator. It's used
+        # like the . operator to call methods on an object.
+        # If the method doesn't exist for the object, 'nil'
+        # will be returned instead of getting an error
+        if body&.downcase&.include?("monkey")
+            # To make a record invalid. You must add a 
+            # validation error using the 'errors' 'add' method
+            # It's arguments (in order):
+            # - A symbol for the invalid column
+            # - An error message as a string
+            self.errors.add(:body, "Must not have monkeys")
+        end
+    end
     
     
     
