@@ -33,6 +33,22 @@ class Question < ApplicationRecord
     # unlike the 'validates' method for regular validations
     validate :no_monkey
 
+    # before_validation is a ifescycle callback
+    # method that allows to respond to events during 
+    # the life of a model instance (i.e being validated, 
+    # being created, being updated etc.)
+    # All lifecycle callback methods take a symbol 
+    # named after a method and calls that method 
+    # at the appropriate time.
+    before_validation(:set_default_view_count)
+
+    # For all available methods go to:
+    # https://guides.rubyonrails.org/v4.0/active_record_callbacks.html
+
+    def cool_view_count
+        view_count 
+    end
+
 
     private 
     
@@ -49,6 +65,10 @@ class Question < ApplicationRecord
             # - An error message as a string
             self.errors.add(:body, "Must not have monkeys")
         end
+    end
+
+    def set_default_view_count
+        self.view_count ||= 0
     end
     
     
