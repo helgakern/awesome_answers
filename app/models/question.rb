@@ -117,11 +117,20 @@ class Question < ApplicationRecord
     # SELECT COUNT(*) FROM "questions";
 
     # .groud
-    # Question.select('avg(view_count)) as count').group('title')
+    Question.select('avg(view_count) as count').group('view_count')
+
+
+    # 5 questions with same title => it will add their view_counts / 5 and it will return it as count = result
 
     # CALLING RAW QUERIES
     # connection = ActiveRecord::Base.connection
     # result = connection.execute('SELECT * FROM questions WHERE id=1;')
     # result.first 👈 because the result is an array of hashes
 
+    # Exercise: Question Contains
+    # Build a query that fetches the first 10 questions
+    # that contain "el" in their titles ordered by "created_at"
+    # in a descending order
+    # solution:
+    # Question.where(['title LIKE ?', '%el%']).limit(10)
 end
