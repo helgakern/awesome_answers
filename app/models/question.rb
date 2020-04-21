@@ -45,10 +45,29 @@ class Question < ApplicationRecord
     # For all available methods go to:
     # https://guides.rubyonrails.org/v4.0/active_record_callbacks.html
 
-    def cool_view_count
-        view_count 
-    end
+    # def cool_view_count
+    #     view_count 
+    # end
 
+    # Create a scope with a class method
+    # https://edgeguides.rubyonrails.org/active_record_querying.html#scopes
+
+    # def self.recent
+    #     order(created_at: :desc).limit(10)
+    # end
+
+    # Scopes are such a commonly used feature, that
+    # there's another way to create them quicker. It 
+    # takes a name and a lambda as a callback
+    scope(:recent, -> { order(created_at: :desc).limit(10)})
+
+    # def self.search(query)
+    #     where("title ILIKE ? OR body ILIKE ?", "%#{query}%", "%#{query}%")
+    # end
+
+    # Equivalent to:
+    scope(:search, -> (query){ where("title ILIKE ? OR body ILIKE ?", "%#{query}%", "%#{query}%") })
+ 
 
     private 
     
@@ -68,7 +87,7 @@ class Question < ApplicationRecord
     end
 
     def set_default_view_count
-        self.view_count ||= 0
+        self.view_count ||= 10
     end
     
     
