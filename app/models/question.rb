@@ -198,7 +198,7 @@ class Question < ApplicationRecord
     # SELECT COUNT(*) FROM "questions";
 
     # .groud
-    Question.select('avg(view_count) as count').group('view_count')
+    # Question.select('avg(view_count) as count').group('view_count')
 
 
     # 5 questions with same title => it will add their view_counts / 5 and it will return it as count = result
