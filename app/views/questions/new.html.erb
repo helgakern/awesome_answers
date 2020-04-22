@@ -1,0 +1,17 @@
+<h1>
+  New Question Page
+</h1>
+
+<%# by default rails forms will submit using XHR/AJAX we'll learn this in the future but for now we want to submit using HTML5 forms so we'll have to set the `local` option to true%>
+<%# https://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with %>
+<%= form_with model: @question, local:true do |f| %>
+  <div class='form-group'>
+    <%= f.label :title %>
+    <%= f.text_field(:title, class: 'form-control')%>
+  </div>
+  <div class='form-group'>
+    <%= f.label :body %>
+    <%= f.text_area(:body, class: 'form-control', cols: 50, rows: 5)%>
+  </div>
+  <%= f.submit "Create", class: 'btn btn-primary' %>
+<% end %>
