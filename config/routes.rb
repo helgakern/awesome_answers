@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+  # if you want to see the routes & helpers you have drawn out visit http://localhost:3000/rails/info/routes
+  
   get("/questions", to: "questions#index")
   # Our application is running on localhost:3000
   # Inside of this is where we define what resources we want available to users
