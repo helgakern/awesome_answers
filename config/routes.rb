@@ -2,15 +2,18 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # if you want to see the routes & helpers you have drawn out visit http://localhost:3000/rails/info/routes
 
-  get("/questions", to: "questions#index")
-  get("/questions/new", to: "questions#new", as: :new_question) #adding a `as: :new_question` option to the route will change the helper path name. This is to adhere to rails convention
-  post("/questions", to: "questions#create")
+  # get("/questions", to: "questions#index")
+  # get("/questions/new", to: "questions#new", as: :new_question) #adding a `as: :new_question` option to the route will change the helper path name. This is to adhere to rails convention
+  # post("/questions", to: "questions#create")
 
-  # creates a dynamic URL paremter called :id. we can access this dynamic id using params[:id]
-  get("/questions/:id", to: "questions#show", as: :question)
-  delete("/questions/:id", to: "questions#destroy")
-  get("/questions/:id/edit", to: "questions#edit", as: :edit_question)
-  patch("/questions/:id", to: "questions#update")
+  # # creates a dynamic URL paremter called :id. we can access this dynamic id using params[:id]
+  # get("/questions/:id", to: "questions#show", as: :question)
+  # delete("/questions/:id", to: "questions#destroy")
+  # get("/questions/:id/edit", to: "questions#edit", as: :edit_question)
+  # patch("/questions/:id", to: "questions#update")
+
+  resources :questions #build the CRUD RESTful routes. (all of the above routes for questions)
+  get("/questions/faq", to: "questions#faq")
   # Our application is running on localhost:3000
   # Inside of this is where we define what resources we want available to users
   
