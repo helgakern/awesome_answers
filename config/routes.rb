@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get("/questions", to: "questions#index")
   get("/questions/new", to: "questions#new", as: :new_question) #adding a `as: :new_question` option to the route will change the helper path name. This is to adhere to rails convention
   post("/questions", to: "questions#create")
+
+  # creates a dynamic URL paremter called :id. we can access this dynamic id using params[:id]
+  get("/questions/:id", to: "questions#show", as: :question)
   # Our application is running on localhost:3000
   # Inside of this is where we define what resources we want available to users
   

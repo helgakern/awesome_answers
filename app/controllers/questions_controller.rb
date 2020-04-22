@@ -21,4 +21,9 @@ class QuestionsController < ApplicationController
       redirect_to new_question_path
     end
   end
+
+  def show
+    id = params[:id]
+    @question = Question.find(id)
+  end
 end
