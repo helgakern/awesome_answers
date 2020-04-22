@@ -10,8 +10,10 @@
   </head>
 
   <body>
-    <%# render method will be replaced by the template at the provided path %>
     <%= render 'shared/navbar' %>
-    <%= yield %>
+    <div class='container'>
+    <%# render method will be replaced by the template at the provided path %>
+      <%= yield %>
+    </div>
   </body>
 </html>
