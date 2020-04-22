@@ -26,4 +26,11 @@ class QuestionsController < ApplicationController
     id = params[:id]
     @question = Question.find(id)
   end
+
+  def destroy
+    id = params[:id]
+    @question = Question.find(id)
+    @question.destroy
+    redirect_to questions_path
+  end
 end

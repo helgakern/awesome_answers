@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   # creates a dynamic URL paremter called :id. we can access this dynamic id using params[:id]
   get("/questions/:id", to: "questions#show", as: :question)
+  delete("/questions/:id", to: "questions#destroy")
   # Our application is running on localhost:3000
   # Inside of this is where we define what resources we want available to users
   

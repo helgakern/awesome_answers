@@ -6,4 +6,16 @@
     <%= @question.title %>
   </h1>
   <p class='shadow-none p-3 mb-5 bg-light rounded'><%= @question.body %></p>
+
+  <%# link_to arguments: name, path, options_object %>
+  <div>
+    <%= link_to(
+      "Delete",
+      question_path(@question),
+      method: :delete,
+      class: 'btn btn-danger',
+      data: { confirm: 'are you sure?' }
+    )
+    %>
+  </div>
 </div>
