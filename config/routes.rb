@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  get("/questions", to: "questions#index")
   # Our application is running on localhost:3000
   # Inside of this is where we define what resources we want available to users
   
@@ -18,4 +19,6 @@ Rails.application.routes.draw do
 
   # POST "/process_contact"
   post("/process_contact", to: "welcome#process_contact")
+  # delete()
+  # patch()
 end

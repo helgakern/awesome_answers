@@ -2,7 +2,6 @@ class WelcomeController < ApplicationController
   # public methods of a controller are called "actions".
   # These methods are responsible for generatinga response to a request
   def hello_world
-
     render(plain: "hello world")
   end
 
