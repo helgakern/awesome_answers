@@ -8,20 +8,28 @@
 
 # To run seeds, do:
 # rails db:seed
-
+Answer.delete_all 
 Question.delete_all
+
 NUM_QUESTION = 200
 
 NUM_QUESTION.times do 
     created_at = Faker::Date.backward(days: 365 * 5)
-    Question.create(
+    q = Question.create(
         title: Faker::Hacker.say_something_smart,
         body: Faker::ChuckNorris.fact,
         created_at: created_at,
         updated_at: created_at
     )
+    if q.valid? 
+        q.answers = rand(0..15).times.map do 
+            Answer.new(body: Faker::GreekPhilosophers.quote)
+        end
+    end
 end
 
 question = Question.all 
+answer = Answer.all
 
 puts Cowsay.say("Generated #{question.count} questions", :frogs)
+puts Cowsay.say("Generated #{answer.count} answers", :tux)
