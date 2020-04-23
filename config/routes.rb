@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :answers, only: [:create, :destroy]
     # equivalent to: 
     # resources :answers, except: [:show, :index, :new, :edit, :update]
-    # question_answerss_path(<question-id>)
+    # question_answers_path(<question-id>)
     # question_answer_url(<question-id>)
     # question_answers_path(@quation)
   end

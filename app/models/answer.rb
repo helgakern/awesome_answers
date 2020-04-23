@@ -20,4 +20,6 @@ class Answer < ApplicationRecord
 
 
   validates :body, presence: true
+  # Note if you want to add your own validation message you can type your validates like below:
+  # validates :body, presence: { message: "My own validation message" }
 end
