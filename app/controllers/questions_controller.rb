@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
     # For the form_with helper 
     @answer = Answer.new 
     # For the list of answer
-    @answers = @question.answers.order(create_at: :desc)
+    @answers = @question.answers.order(created_at: :desc)
   end
 
   def destroy

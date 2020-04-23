@@ -25,3 +25,21 @@
     %>
   </div>
 </div>
+
+<hr />
+
+<ul class="list-group answer-list">
+  <% @answers.each do |answer| %>
+    <li class="list-group-item">
+      <p>
+        <%= answer.body %><br />
+        <small>
+        Will add delete button here later
+        </small>
+        <small>
+        Answered <%= time_ago_in_words(answer.created_at) %>
+        </small>
+      </p>
+    </li>
+  <% end %>
+</ul>
