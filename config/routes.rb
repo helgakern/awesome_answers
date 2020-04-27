@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # get("/questions/:id/edit", to: "questions#edit", as: :edit_question)
   # patch("/questions/:id", to: "questions#update")
 
+  resources :users, only: [:new, :create]
   resource :session, only: [:new, :create, :destroy]
   # notice resource here is singular. This is a different method that is like resources.
   # this method is used for a resource which you will only create one of.
