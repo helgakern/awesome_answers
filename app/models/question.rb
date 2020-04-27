@@ -22,6 +22,8 @@ class Question < ApplicationRecord
     # that no longer exist, likely leading to errors. 
     # Always set a dependent option to help maintain
     # referential integrity.
+
+    belongs_to :user
     has_many(:answers, dependent: :destroy)
     # has_many(:answers, dependent: :destroy) adds 
     # the following instance methods to the Question model:

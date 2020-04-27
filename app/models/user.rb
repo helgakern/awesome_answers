@@ -10,4 +10,8 @@ class User < ApplicationRecord
   # This method requires:
   # 1) the bcrypt library/gem
   # 2) a column in the table(model) called password_digest
+  has_many :questions
+  # u = User.find(15)
+  # u.questions -> because of the has_many relationship will return all the questions that belong to user
+  has_many :answers
 end

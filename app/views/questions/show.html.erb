@@ -6,7 +6,7 @@
     <%= @question.title %>
   </h1>
   <p class='shadow-none p-3 mb-5 bg-light rounded'><%= @question.body %></p>
-
+  <p class='text-muted'><%= @question.user.first_name %> <%= @question.user.last_name %></p>
   <%# link_to arguments: name, path, options_object %>
   <div>
     <%= link_to(

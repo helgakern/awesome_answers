@@ -35,11 +35,14 @@ NUM_USER.times do
     )
 end
 
+users = User.all # array of user records
+
 NUM_QUESTION.times do 
     created_at = Faker::Date.backward(days: 365 * 5)
     q = Question.create(
         title: Faker::Hacker.say_something_smart,
         body: Faker::ChuckNorris.fact,
+        user: users.sample, # array method that randomly picks something from an array
         created_at: created_at,
         updated_at: created_at
     )
@@ -52,7 +55,6 @@ end
 
 question = Question.all 
 answer = Answer.all
-users = User.all
 
 puts Cowsay.say("Generated #{question.count} questions", :frogs)
 puts Cowsay.say("Generated #{answer.count} answers", :tux)
