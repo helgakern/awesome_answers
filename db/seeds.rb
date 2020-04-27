@@ -48,7 +48,7 @@ NUM_QUESTION.times do
     )
     if q.valid? 
         q.answers = rand(0..15).times.map do 
-            Answer.new(body: Faker::GreekPhilosophers.quote)
+          Answer.new(body: Faker::GreekPhilosophers.quote, user: users.sample)
         end
     end
 end

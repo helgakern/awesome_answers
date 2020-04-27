@@ -77,7 +77,7 @@
         </small>
         |
         <small>
-        Answered <%= time_ago_in_words(answer.created_at) %>
+          Answered <%= time_ago_in_words(answer.created_at) %> By <%= answer.user.first_name %> <%= answer.user.last_name %>
         </small>
       </p>
     </li>
