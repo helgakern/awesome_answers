@@ -10,8 +10,30 @@
 # rails db:seed
 Answer.delete_all 
 Question.delete_all
+User.delete_all
 
 NUM_QUESTION = 200
+NUM_USER = 10
+PASSWORD = 'supersecret'
+
+
+super_user = User.create(
+    first_name: 'jon',
+    last_name: 'snow',
+    email: 'js@winterfell.gov',
+    password: PASSWORD
+)
+
+NUM_USER.times do
+    first_name = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+    User.create(
+        first_name: first_name,
+        last_name: last_name,
+        email: Faker::Internet.email,
+        password: PASSWORD
+    )
+end
 
 NUM_QUESTION.times do 
     created_at = Faker::Date.backward(days: 365 * 5)
@@ -30,6 +52,8 @@ end
 
 question = Question.all 
 answer = Answer.all
+users = User.all
 
 puts Cowsay.say("Generated #{question.count} questions", :frogs)
 puts Cowsay.say("Generated #{answer.count} answers", :tux)
+puts Cowsay.say("Generated #{users.count} users", :sheep)
