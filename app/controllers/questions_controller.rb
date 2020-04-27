@@ -1,6 +1,11 @@
 # run `rails g controller questions` to generate a questions controller
 
 class QuestionsController < ApplicationController
+  #before_action is a controlle hook provided by rails
+  # 1) it accepts a method name
+  # 2) options hash
+  before_action :authenticate_user!, except: [:index, :show] 
+  # will call authenticate_user! before every method except :index and :show
 
   # show all of our questions
   def index
