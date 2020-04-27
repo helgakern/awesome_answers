@@ -7,7 +7,11 @@
   </ul>
   <div>
     <% if user_signed_in? %>
+      <%# this button created by link_to should DELETE /session %>
+      <%= link_to "Logout", session_path, method: :delete, class: 'btn btn-danger' %>
       <%= current_user.first_name %> <%= current_user.last_name %>
+    <% else %>
+      <%= link_to "Log In", new_session_path, class: 'btn btn-success'%>
     <% end %>
   </div>
 </nav>
