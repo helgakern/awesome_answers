@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   get("/hello_world", to: "welcome#hello_world") # when someone visits GET "/hello_world" they are sent to the welcome controller, hello_world action.
 
   # GET "/" WelcomeController.root method gets called
-  get("/", to: "welcome#root")
+  get("/", to: "welcome#root", as: :root)
 
   # GET "/contact_us"
   get("/contact_us", to: "welcome#contact_us")

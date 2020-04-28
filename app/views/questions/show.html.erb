@@ -8,6 +8,7 @@
   <p class='shadow-none p-3 mb-5 bg-light rounded'><%= @question.body %></p>
   <p class='text-muted'><%= @question.user.first_name %> <%= @question.user.last_name %></p>
   <%# link_to arguments: name, path, options_object %>
+  <% if can? :crud, @question %>
   <div>
     <%= link_to(
       "Edit",
@@ -24,6 +25,7 @@
     )
     %>
   </div>
+  <% end %>
 </div>
 
 <%#
@@ -64,6 +66,7 @@
     <li class="list-group-item">
       <p>
         <%= answer.body %><br />
+        <% if can? :crud, answer %>
         <small>
           <%= link_to(
             "Delete",
@@ -76,6 +79,7 @@
           ) %>
         </small>
         |
+        <% end %>
         <small>
           Answered <%= time_ago_in_words(answer.created_at) %> By <%= answer.user.first_name %> <%= answer.user.last_name %>
         </small>

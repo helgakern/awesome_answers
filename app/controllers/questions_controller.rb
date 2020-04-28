@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
   # 2) options hash
   before_action :authenticate_user!, except: [:index, :show] 
   # will call authenticate_user! before every method except :index and :show
+  before_action :authorize!, only: [:edit, :update, :destroy]
 
   # show all of our questions
   def index
@@ -57,5 +58,9 @@ class QuestionsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def authorize! 
+    redirect_to root_path, alert: 'Not Authorized' unless can?(:crud, @question)
   end
 end
