@@ -10,6 +10,22 @@ class User < ApplicationRecord
   # This method requires:
   # 1) the bcrypt library/gem
   # 2) a column in the table(model) called password_digest
+  has_and_belongs_to_many(
+    :liked_questions,
+    {
+      class_name: 'Question',
+      join_table: 'likes',
+      association_foreign_key: 'question_id',
+      foreign_key: 'user_id'
+    }
+  )
+  # Docs:
+  # has_and_belongs_to_many(name, scope=nil, {options}, &extension)
+  # the options are as follows:
+  # :class_name -> the Model that the association points to
+  # :join_table -> the join table used to create this association
+  # :foreign_key -> on the join table, which foreign key points to this current model
+  # :association_foreign_key -> on the join table, which foreign key points to the associated table
   has_many :questions
   # u = User.find(15)
   # u.questions -> because of the has_many relationship will return all the questions that belong to user

@@ -1,9 +1,15 @@
-Todays Lecture:
+Rails: Many To Many 
 
-Rails Authentication
+1) Many To Many Introduction
+2) Build Migrations
+3) Update Models
+4) - Routes and Controllers
 
-1) Create Users
 
-2) Implent Login/Logout (Sessions)
+We're Implementing Likes to our project.
+A user can have many liked_questions
+A question can have many likes
 
-3) User Relations
+Create a migration for table likes
+  - user_id -> references user.id
+  - question_id -> references question.id
