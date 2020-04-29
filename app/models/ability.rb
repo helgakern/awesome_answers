@@ -73,5 +73,17 @@ class Ability
       # Answers:
       # answer.user == user || answer.question.user == user
     end
+
+    can(:like, Question) do |question|
+      user.persisted? && question.user != user
+      # user.persisted? check if user is saved in the database
+      # question.user != user. do not allow a user to like his own question
+    end
+    # the above method will allow us to:
+    # `can? :like @question` will execute the above rule
+
+    can(:destroy, Like) do |like|
+      like.user == user
+    end
   end
 end

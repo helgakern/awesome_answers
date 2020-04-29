@@ -5,7 +5,9 @@ class LikesController < ApplicationController
     question = Question.find params[:question_id]
     like = Like.new(question: question, user: current_user)
 
-    if like.save
+    if !can?(:like, question)
+      flash[:danger] = "You can't like your own question...."
+    elsif like.save
       flash[:success] = "Question Liked"
     else
       flash[:danger] = like.errors.full_messages.join(", ")
@@ -17,7 +19,9 @@ class LikesController < ApplicationController
     # like = Like.find params[:id]. with this way a user is able to search ALL likes
     like = current_user.likes.find params[:id] # this way user can only search his/hers likes
 
-    if like.destroy
+    if !can?(:destroy, like)
+      flash[:warning] = "you can't destroy a like you don't own"
+    elsif like.destroy
       flash[:success] = "Question Unliked"
     else
       flash[:warning] = "It's rude to unlike something you've already liked"

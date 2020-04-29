@@ -8,6 +8,7 @@
   <p class='shadow-none p-3 mb-5 bg-light rounded'><%= @question.body %></p>
   <p class='text-muted'><%= @question.user.first_name %> <%= @question.user.last_name %></p>
   <%# link_to arguments: name, path, options_object %>
+  <small>Liked by: <%= @question.likes.count %></small>
   <small>
     <% if @like.present? %>
       <%= link_to(
