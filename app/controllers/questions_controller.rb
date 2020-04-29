@@ -62,6 +62,13 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def liked
+    # all the questions that this particular logged in user has liked
+    @questions = current_user.liked_questions.order(created_at: :desc)
+  end
+
+  private
+
   def authorize! 
     redirect_to root_path, alert: 'Not Authorized' unless can?(:crud, Question)
   end

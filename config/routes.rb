@@ -41,6 +41,9 @@ Rails.application.routes.draw do
     # question_answers_path(<question-id>)
     # question_answer_url(<question-id>)
     # question_answers_path(@quation)
+
+    get :liked, on: :collection
+    # above route creats a path like: GET "/questions/liked" # kind of similar to questions index but only show the questions that the user has liked
   end
   get("/questions/faq", to: "questions#faq")
   # Our application is running on localhost:3000

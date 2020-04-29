@@ -12,6 +12,9 @@ class User < ApplicationRecord
   # 2) a column in the table(model) called password_digest
   has_many :likes
   has_many :liked_questions, through: :likes, source: :question
+  # through: :likes <- the join table
+  # source: :question <- the associated model relative to this current model (the association foreign key on the likes table)
+
   # has_and_belongs_to_many(
   #   :liked_questions,
   #   {

@@ -5,14 +5,7 @@
   </div>
 
   <div class='col-10'>
-    <% @questions.each do |question| %>
-    <%# if you pass a instance to link_to it will create the href='/questions/:id' %>
-      <%= link_to question do %>
-        <li class='list-group-item'>
-          <p><%= question.id %> <%= question.title %></p>
-        </li>
-      <% end %>
-    <% end %>
+    <%= render 'list' %>
 
     <%# link_to just creates a `a tag` with the correct href. the below is equivalent to the above code %>
     <% if false %>

@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy] 
+
   def create
     # 1) question id -> question that is going to be liked. This comes from params
     # 2) user_id -> user that liked this question. This comes from session
