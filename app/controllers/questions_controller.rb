@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
 
   # show all of our questions
   def index
-    @questions = Question.all.order('updated_at DESC')
+    @questions = Question.all.all_with_answer_counts.order('updated_at DESC')
   end
 
   def new
@@ -64,7 +64,7 @@ class QuestionsController < ApplicationController
 
   def liked
     # all the questions that this particular logged in user has liked
-    @questions = current_user.liked_questions.order(created_at: :desc)
+    @questions = current_user.liked_questions.all_with_answer_counts.order(created_at: :desc)
   end
 
   private

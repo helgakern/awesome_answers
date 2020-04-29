@@ -135,6 +135,14 @@ class Question < ApplicationRecord
     def set_default_view_count
         self.view_count ||= 10
     end
+
+    def self.all_with_answer_counts
+        self
+            .left_outer_joins(:answers)
+            .select("questions.*", "COUNT(answers.*) AS answers_count")
+            .group("questions.id")
+            # https://edgeguides.rubyonrails.org/active_record_querying.html#left-outer-joins
+    end
     
     
     
