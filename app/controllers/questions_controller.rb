@@ -36,6 +36,8 @@ class QuestionsController < ApplicationController
     @answer = Answer.new 
     # For the list of answer
     @answers = @question.answers.order(created_at: :desc)
+
+    @like = @question.likes.find_by(user: current_user)
   end
 
   def destroy
