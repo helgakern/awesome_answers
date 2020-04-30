@@ -8,6 +8,9 @@
 
 # To run seeds, do:
 # rails db:seed
+Like.delete_all 
+Tagging.delete_all 
+Tag.delete_all
 Answer.delete_all 
 Question.delete_all
 User.delete_all
@@ -15,6 +18,7 @@ User.delete_all
 NUM_QUESTION = 200
 NUM_USER = 10
 PASSWORD = 'supersecret'
+NUM_TAGS = 20
 
 
 super_user = User.create(
@@ -35,7 +39,16 @@ NUM_USER.times do
     )
 end
 
+
 users = User.all # array of user records
+
+NUM_TAGS.times do 
+    Tag.create(
+        name: Faker::Game.genre
+    )
+end
+
+tags = Tag.all 
 
 NUM_QUESTION.times do 
     created_at = Faker::Date.backward(days: 365 * 5)
@@ -51,11 +64,15 @@ NUM_QUESTION.times do
           Answer.new(body: Faker::GreekPhilosophers.quote, user: users.sample)
         end
     end
+    q.likers = users.shuffle.slice(0, rand(users.count))
+    q.tags = tags.shuffle.slice(0, rand(tags.count))
 end
 
 question = Question.all 
 answer = Answer.all
 
+puts Cowsay.say("Generated #{Like.count} likes", :ghostbusters)
+puts Cowsay.say("Generated #{Tag.count} tags", :kitty)
 puts Cowsay.say("Generated #{question.count} questions", :frogs)
 puts Cowsay.say("Generated #{answer.count} answers", :tux)
 puts Cowsay.say("Generated #{users.count} users", :sheep)

@@ -12,7 +12,7 @@ class Like < ApplicationRecord
   #|1|30|50|
   #|2|45|50| -> user_id 45 can not like question 50 because a record with question_id 50 already exists
 
-
+  # Don't let the same user like the same question more than once 
   validates(
     :question_id,
     uniqueness: {
