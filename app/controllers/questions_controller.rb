@@ -10,7 +10,14 @@ class QuestionsController < ApplicationController
 
   # show all of our questions
   def index
-    @questions = Question.all.all_with_answer_counts.order('updated_at DESC')
+    #if we search throught questions by tags, for example:
+    # localhost:3000/questions?tag=Action 
+    if params[:tag]
+      @tag = Tag.find_or_initialize_by(name: params[:tag])
+      @questions = @tag.questions.all.all_with_answer_counts.order('updated_at DESC')
+    else
+      @questions = Question.all.all_with_answer_counts.order('updated_at DESC')
+    end
   end
 
   def new
@@ -19,7 +26,7 @@ class QuestionsController < ApplicationController
 
   def create
     # params.require(:question).permit(:title, :body) => tells rails to allow an object on the params that is called question. And on that question object allow the keys :title and :body
-    @question = Question.new(params.require(:question).permit(:title, :body, tag_ids: []))
+    @question = Question.new(params.require(:question).permit(:title, :body, :tag_names))
     @question.user = current_user
     #tell active record to goahead and run the INSERT SQL query against our db. Returns true if it saves, returns false if it doesn't save
     if @question.save
@@ -55,7 +62,7 @@ class QuestionsController < ApplicationController
   def update
     id = params[:id]
     @question = Question.find(id)
-    if @question.update(params.require(:question).permit(:title, :body, {tag_ids: []}))
+    if @question.update(params.require(:question).permit(:title, :body, :tag_names))
       redirect_to question_path(@question)
     else
       render :edit
