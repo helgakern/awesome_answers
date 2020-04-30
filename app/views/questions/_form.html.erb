@@ -15,5 +15,13 @@
     <%= f.label :body %>
     <%= f.text_area(:body, class: 'form-control', cols: 50, rows: 5)%>
   </div>
+  <div class='tag-container'>
+    <%= f.collection_check_boxes :tag_ids, Tag.order(name: :asc), :id, :name do |t| %>
+      <div class="tag-wrapper">
+        <%= t.check_box %>
+        <%= t.text.humanize %>
+      </div>
+    <% end %>
+  </div>
   <%= f.submit "Submit", class: 'btn btn-primary' %>
 <% end %>

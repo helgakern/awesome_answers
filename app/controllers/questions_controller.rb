@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
 
   def create
     # params.require(:question).permit(:title, :body) => tells rails to allow an object on the params that is called question. And on that question object allow the keys :title and :body
-    @question = Question.new(params.require(:question).permit(:title, :body))
+    @question = Question.new(params.require(:question).permit(:title, :body, tag_ids: []))
     @question.user = current_user
     #tell active record to goahead and run the INSERT SQL query against our db. Returns true if it saves, returns false if it doesn't save
     if @question.save
@@ -55,7 +55,7 @@ class QuestionsController < ApplicationController
   def update
     id = params[:id]
     @question = Question.find(id)
-    if @question.update(params.require(:question).permit(:title, :body))
+    if @question.update(params.require(:question).permit(:title, :body, {tag_ids: []}))
       redirect_to question_path(@question)
     else
       render :edit
