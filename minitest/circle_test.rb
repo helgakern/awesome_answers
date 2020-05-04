@@ -40,7 +40,8 @@ describe Circle do
   
         perm = crcl.perimeter
   
-        _(perm).must_equal(31.40)
+        _(perm).must_equal(31.400000000000002)
+
       end
     end
   
