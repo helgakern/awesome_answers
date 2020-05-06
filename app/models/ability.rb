@@ -85,5 +85,10 @@ class Ability
     can(:destroy, Like) do |like|
       like.user == user
     end
+
+    can(:crud, JobPost) do |job_post| 
+      job_post.user == user 
+    end
+    
   end
 end

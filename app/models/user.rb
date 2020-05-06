@@ -35,4 +35,5 @@ class User < ApplicationRecord
   # u = User.find(15)
   # u.questions -> because of the has_many relationship will return all the questions that belong to user
   has_many :answers
+  has_many :job_posts, dependent: :nullify
 end
