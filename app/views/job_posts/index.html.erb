@@ -1,0 +1,10 @@
+<ul>
+  <% @job_posts.each do |job_post| %>
+    <%# if you pass a instance to link_to it will create the href='/job_posts/:id' %>
+    <%= link_to job_post do %>
+      <li class='list-group-item'>
+        <p><%= job_post.id %> <%= job_post.title %></p>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
