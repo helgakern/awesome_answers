@@ -36,4 +36,10 @@ class User < ApplicationRecord
   # u.questions -> because of the has_many relationship will return all the questions that belong to user
   has_many :answers
   has_many :job_posts, dependent: :nullify
+
+  validates(:email, presence: true, uniqueness: true, format: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
+
+  def full_name 
+    "#{first_name} #{last_name}".strip
+  end
 end

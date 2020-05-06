@@ -4,6 +4,9 @@ require 'byebug'
 # run these tests using the command rspec -f d
 
 RSpec.describe JobPost, type: :model do
+  def current_user
+    @current_user ||= FactoryBot.create(:user)
+  end
   describe "#validates" do
     it "is requires a title" do
       # Given
@@ -79,19 +82,22 @@ RSpec.describe JobPost, type: :model do
         title: "Software Engineer",
         description: "Best Job ever. We build the best applications ever",
         min_salary: 50_000,
-        location: "Vancouver"
+        location: "Vancouver",
+        user: current_user
       )
       job_post_b = JobPost.create(
         title: "Programmer",
         description: "Best Software position. We build the best applications ever",
         min_salary: 50_000,
-        location: "Burnaby"
+        location: "Burnaby",
+        user: current_user
       )
       job_post_c = JobPost.create(
         title: "Programmer",
         description: "Build awesome stuff. We build the best applications ever",
         min_salary: 50_000,
-        location: "Vancouver"
+        location: "Vancouver",
+        user: current_user
       )
 
       # WHEN

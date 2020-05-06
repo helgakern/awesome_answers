@@ -28,7 +28,7 @@ class Question < ApplicationRecord
     # source singularized (i.e. tag), then the 'source:' named
     # argument can be omitted
 
-    has_many :likes
+    has_many :likes, dependent: :destroy
     has_many :likers, through: :likes, source: :user
     # has_and_belongs_to_many(
     #     :likes,

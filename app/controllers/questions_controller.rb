@@ -77,6 +77,6 @@ class QuestionsController < ApplicationController
   private
 
   def authorize! 
-    redirect_to root_path, alert: 'Not Authorized' unless can?(:crud, Question)
+    redirect_to root_path, alert: 'Not Authorized' unless can?(:crud, @question)
   end
 end
