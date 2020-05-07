@@ -30,6 +30,9 @@ gem 'bootstrap', '~> 4.4.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'letter_opener'
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.4'
+gem 'delayed_job_web', '~> 1.4', '>= 1.4.3'
+
 # gems listed above here are considered production gems. These should gems that are core to your application
 
 group :development, :test do

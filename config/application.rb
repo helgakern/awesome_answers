@@ -29,6 +29,10 @@ module AwesomeAnswersMarch202
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    # active job is the background job framework built into rails. It handles running stuff in the background
+    # delayed_job is a queue manager. It decides which jobs should run
+    config.active_job.queue_adapter = :delayed_job
+
     # Don't generate system test files.
     config.generators.system_tests = nil
   end

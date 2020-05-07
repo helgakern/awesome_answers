@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # this a route for delayed job web. This allows us to see a dashboard at a path
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, :via => [:get, :post]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # if you want to see the routes & helpers you have drawn out visit http://localhost:3000/rails/info/routes
 

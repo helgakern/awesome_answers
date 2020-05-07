@@ -18,8 +18,10 @@ class AnswerMailer < ApplicationMailer
     @question_owner = @question.user
 
     mail(
-      to: @question_owner.email
+      to: @question_owner.email,
       subject: "#{answer.user.first_name} answerd your question!"
     )
   end
+  # inside of a controller teh AnswerMailer is loaded in
+  # we can invoke this method by calling AnswerMailer.notify_question_owner(@answer).deliver_now
 end
