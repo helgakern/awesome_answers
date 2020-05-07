@@ -1,0 +1,2 @@
+ENV["EMAIL_USERNAME"] = "something@gmail.com"
+ENV["EMAIL_PASSWORD"] = "yoursupersecret"

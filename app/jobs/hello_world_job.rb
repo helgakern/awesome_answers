@@ -4,6 +4,7 @@ class HelloWorldJob < ApplicationJob
 
   def perform(word)
     # Do something later
+        # this is the code that gets executed at a later time
     puts "--------"
     puts "Running a job 🏃‍♀️"
     puts "The word is: #{word}"
