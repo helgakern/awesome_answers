@@ -15,8 +15,17 @@ class QuestionsController < ApplicationController
     if params[:tag]
       @tag = Tag.find_or_initialize_by(name: params[:tag])
       @questions = @tag.questions.all.all_with_answer_counts.order('updated_at DESC')
+      # curl -H "Accept: application/json" http://localhost:3000/questions
+      respond_to do |format|
+        format.html { render }
+        format.json { render json: @questions }
+      end
     else
       @questions = Question.all.all_with_answer_counts.order('updated_at DESC')
+      respond_to do |format|
+        format.html { render }
+        format.json { render json: @questions }
+      end
     end
   end
 
