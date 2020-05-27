@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # patch("/questions/:id", to: "questions#update")
 
   resources :users, only: [:new, :create]
+  resource :user, only: [:edit, :update]
   resource :session, only: [:new, :create, :destroy]
   # notice resource here is singular. This is a different method that is like resources.
   # this method is used for a resource which you will only create one of.
@@ -68,4 +69,27 @@ Rails.application.routes.draw do
   # delete()
   # patch()
   resources :job_posts
+
+    # API routes
+
+  # The namespace method in Rails routes makes it so that
+  # your app will automatically look in a directory api,
+  # then in a sub directory v1 for QuestionsController
+
+  # The option 'defaults: { format: :json }' will set 'json' as
+  # the default response format for all routes contained within
+  # the block.
+
+  # tldr: namespace change the path of the route as well as which controller method responds to the requeset. 
+  
+  # /api/v1/questions
+  # /api/v1/questions/:id
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :questions, only: [:index, :show, :update, :create, :destroy]
+
+      resource :session, only: [:create, :destroy]
+    end
+  end
+
 end

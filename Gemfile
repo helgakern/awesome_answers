@@ -30,6 +30,8 @@ gem 'bootstrap', '~> 4.4.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'letter_opener'
+gem 'active_model_serializers'
+gem 'rack-cors'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.4'
 gem 'delayed_job_web', '~> 1.4', '>= 1.4.3'
 
