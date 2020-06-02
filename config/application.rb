@@ -21,6 +21,19 @@ Bundler.require(*Rails.groups)
 
 module AwesomeAnswersMarch202
   class Application < Rails::Application
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        # origins accepts an array of domain names. These are all the whitelisted DOMAINS that are allowed to send CORS (cross origin ajax requests) requests
+        origins 'localhost:5500', '127.0.0.1:5500', 'localhost:8080', '127.0.0.1:8080'
+        resource(
+          "/api/*", # only allow CORS to paths that look like /api
+          headers: :any, # allow requests to contain any headers
+          credentials: true, # because we're sending cookies we must have CORS allow credentials
+          methods: [:get, :post, :delete, :patch, :put, :options] # allow only these methods
+        )
+      end
+    end
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
