@@ -9,6 +9,7 @@ class AnswersController < ApplicationController
         @answer.question = @question
         @answer.user = current_user
         if @answer.save
+            # AnswerMailer.notify_question_owner(@answer).deliver_now # deliver_now does this action now, it does not get added to a queue
             AnswerMailer.notify_question_owner(@answer).deliver_now # deliver_now does this action now, it does not get added to a queue
             HelloWorldJob.perform_later("someone answered a question") # <Job>.perform_later is enqueing jobs to delayed_job
             redirect_to question_path(@question)

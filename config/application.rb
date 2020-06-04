@@ -21,6 +21,22 @@ Bundler.require(*Rails.groups)
 
 module AwesomeAnswersMarch202
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 6.0
+
+    config.active_storage.service = :local
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
+
+    # active job is the background job framework built into rails. It handles running stuff in the background
+    # delayed_job is a queue manager. It decides which jobs should run
+    config.active_job.queue_adapter = :delayed_job
+
+    # Don't generate system test files.
+    config.generators.system_tests = nil
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         # origins accepts an array of domain names. These are all the whitelisted DOMAINS that are allowed to send CORS (cross origin ajax requests) requests
@@ -34,19 +50,5 @@ module AwesomeAnswersMarch202
       end
     end
 
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
-
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
-
-    # active job is the background job framework built into rails. It handles running stuff in the background
-    # delayed_job is a queue manager. It decides which jobs should run
-    config.active_job.queue_adapter = :delayed_job
-
-    # Don't generate system test files.
-    config.generators.system_tests = nil
   end
 end

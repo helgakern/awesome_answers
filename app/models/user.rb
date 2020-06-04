@@ -10,7 +10,7 @@ class User < ApplicationRecord
   # This method requires:
   # 1) the bcrypt library/gem
   # 2) a column in the table(model) called password_digest
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_questions, through: :likes, source: :question
   # through: :likes <- the join table
   # source: :question <- the associated model relative to this current model (the association foreign key on the likes table)
@@ -39,6 +39,7 @@ class User < ApplicationRecord
 
   validates(:email, presence: true, uniqueness: true, format: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
 
+  has_one_attached :avatar
   def full_name 
     "#{first_name} #{last_name}".strip
   end

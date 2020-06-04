@@ -4,8 +4,14 @@
     <%= @user.errors.full_messages.join(', ')%>
   </p>
 <% end %>
+<div id='map' style='width:500px; height:500px'>
+</div>
 <div class='shadow-sm p-3 mb-5 bg-white rounded'>
   <%= form_with model: @user, local: true do |f| %>
+    <div class='form-group'>
+      <%= f.label :avatar %>
+      <%= f.file_field :avatar %>
+    </div>
     <div class='form-group'>
       <%= f.label :first_name%>
       <%= f.text_field :first_name, class: 'form-control' %>
@@ -29,3 +35,8 @@
     <%= f.submit "Create User", class: 'btn btn-primary' %>
   <% end %>
 </div>
+
+<%= javascript_pack_tag 'users/new' %>
+<script async defer>
+  <%= raw @google_maps_js %>
+</script>

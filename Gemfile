@@ -32,6 +32,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'letter_opener'
 gem 'active_model_serializers'
 gem 'rack-cors'
+gem 'mini_magick'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.4'
 gem 'delayed_job_web', '~> 1.4', '>= 1.4.3'
 
