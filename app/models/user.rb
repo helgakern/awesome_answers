@@ -53,6 +53,13 @@ class User < ApplicationRecord
     )
   end
 
+  def self.find_by_oauth(oauth_data)
+    self.find_by(
+      uid: oauth_data["uid"],
+      provider: oauth_data["provider"]
+    )
+  end
+
   def from_oauth?
     uid.present? && provider.present?
   end
