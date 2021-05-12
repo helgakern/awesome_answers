@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3' #this should correspond to the ruby version you are running
+ruby '2.6.1' #this should correspond to the ruby version you are running
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # to scope a gem to a specific major version you can use the ~> symbol before the gem version
